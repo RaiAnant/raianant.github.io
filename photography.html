@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Anant Rai - Photography</title>
+  <meta name="author" content="Anant Rai">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="icon" type="image/png" href="images/seal_icon.png">
+  
+  <style>
+    /* Navigation styling */
+    .nav-header {
+      padding: 2.5% 0;
+      margin-bottom: 20px;
+    }
+    
+    /* Masonry Grid Layout for varying image sizes */
+    .masonry-gallery {
+      column-count: 3;
+      column-gap: 20px;
+      padding: 0 15px;
+    }
+    
+    /* Image styling & hover effects */
+    .masonry-gallery img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: #f0f0f0; /* Placeholder color while loading */
+    }
+    
+    .masonry-gallery img:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Responsive design for smaller screens */
+    @media (max-width: 800px) {
+      .masonry-gallery {
+        column-count: 2;
+      }
+    }
+    @media (max-width: 500px) {
+      .masonry-gallery {
+        column-count: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <table style="width:100%;max-width:920px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+    <tbody>
+      <tr style="padding:0px">
+        <td style="padding:0px">
+          
+          <!-- Header and Navigation -->
+          <div class="nav-header" style="padding-left: 20px;">
+            <heading>Photography</heading>
+            <p>
+              <a href="index.html">← Back to Home</a>
+            </p>
+          </div>
+
+          <!-- Empty Gallery Container -->
+          <div class="masonry-gallery" id="photo-gallery">
+            <!-- Images will be injected here by JavaScript -->
+          </div>
+
+          <!-- Footer -->
+          <table width="100%" cellpadding="20"><tbody>
+            <tr>
+              <p style="text-align: right; margin-top: 40px;">
+                <a href="https://jonbarron.info/">Template From Here</a>
+              </p>
+            </tr>
+          </tbody></table>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- JavaScript to shuffle and load images -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // 1. Define the folder path
+      const folderPath = 'images/photography/';
+      
+      // 2. ONLY CHANGE THIS NUMBER: Total number of photos you have uploaded
+      const N = 22; 
+      
+      // 3. Make sure all your photos use the exact same file extension (e.g., '.jpg' or '.png')
+      const fileExtension = '.jpg';
+
+      // 4. Automatically generate the list of filenames [ '1.jpg', '2.jpg', ... 'N.jpg' ]
+      const imageFiles = [];
+      for (let i = 1; i <= N; i++) {
+        imageFiles.push(i + fileExtension);
+      }
+
+      // 5. Fisher-Yates Shuffle Algorithm (Randomizes array on every page load)
+      for (let i = imageFiles.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [imageFiles[i], imageFiles[j]] = [imageFiles[j], imageFiles[i]];
+      }
+
+      // 6. Inject images into the HTML
+      const gallery = document.getElementById('photo-gallery');
+      
+      imageFiles.forEach(file => {
+        const img = document.createElement('img');
+        img.src = folderPath + file;
+        img.alt = "Photography";
+        
+        // Keeps the page loading fast by only rendering images close to the viewport
+        img.loading = "lazy"; 
+        
+        gallery.appendChild(img);
+      });
+    });
+  </script>
+</body>
+</html>
