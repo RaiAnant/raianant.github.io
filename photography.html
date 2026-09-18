@@ -173,7 +173,6 @@
         { id: '14', width: 960, height: 638 },
         { id: '15', width: 632, height: 960 },
         { id: '16', width: 638, height: 960 },
-        { id: '17', width: 960, height: 588 },
         { id: '18', width: 960, height: 627 },
         { id: '19', width: 960, height: 638 },
         { id: '20', width: 960, height: 507 },
@@ -220,6 +219,7 @@
       const gallery = document.getElementById('photo-gallery');
       const lightbox = document.getElementById('lightbox');
       const lightboxImg = document.getElementById('lightbox-img');
+      let lightboxRequest = 0;
       
       photos.forEach((photo, index) => {
         // 1. Create outer card item
@@ -255,9 +255,20 @@
         
         // Interaction: Clicking the photo opens the full screen UI element
         item.addEventListener('click', () => {
-          lightboxImg.src = folderPath + 'lightbox/' + photo.id + '.avif';
+          const requestId = ++lightboxRequest;
+          const fullImage = new Image();
+
+          // Show the already-loaded gallery image while the larger file downloads.
+          lightboxImg.src = img.currentSrc || img.src;
           lightboxImg.alt = img.alt;
           lightbox.style.display = 'flex';
+
+          fullImage.addEventListener('load', () => {
+            if (requestId === lightboxRequest) {
+              lightboxImg.src = fullImage.src;
+            }
+          });
+          fullImage.src = folderPath + 'lightbox/' + photo.id + '.jpg';
         });
 
         gallery.appendChild(item);
@@ -266,6 +277,7 @@
       // Interaction: Clicking outside the image (on the background overlay) closes it
       lightbox.addEventListener('click', (event) => {
         if (event.target === lightbox) {
+          lightboxRequest++;
           lightbox.style.display = 'none';
           lightboxImg.src = ''; // Clear image source to save runtime memory
         }
