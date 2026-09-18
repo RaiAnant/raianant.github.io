@@ -137,9 +137,23 @@
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
-      gap: clamp(40px, 7vw, 86px);
+      column-gap: clamp(40px, 7vw, 86px);
+      row-gap: 0;
       align-items: start;
       padding: clamp(58px, 7vw, 88px) 0 clamp(52px, 7vw, 82px);
+    }
+
+    .hero-heading,
+    .hero-details {
+      grid-column: 1;
+    }
+
+    .hero-heading {
+      grid-row: 1;
+    }
+
+    .hero-details {
+      grid-row: 2;
     }
 
     .publication-kicker {
@@ -214,6 +228,8 @@
     }
 
     .portrait-panel {
+      grid-column: 2;
+      grid-row: 1 / span 2;
       width: min(100%, 300px);
       justify-self: end;
     }
@@ -464,11 +480,20 @@
 
       .hero {
         grid-template-columns: 1fr;
+        row-gap: 28px;
         padding-top: 72px;
       }
 
       .hero-title {
+        margin-bottom: 0;
         font-size: clamp(52px, 16vw, 72px);
+      }
+
+      .hero-heading,
+      .hero-details,
+      .portrait-panel {
+        grid-column: 1;
+        grid-row: auto;
       }
 
       .portrait-panel {
@@ -532,17 +557,8 @@
 
   <main class="page-shell" id="main-content">
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="hero-copy">
+      <div class="hero-heading">
         <h1 class="hero-title" id="hero-title">Anant <span>Rai</span></h1>
-        <p class="hero-about">Hi, I’m Anant. I’m a founding research engineer at a stealth startup, working to make robots more capable and general-purpose so they can become part of daily life. Previously, I was among the first five members of the AI team at <a href="https://www.1x.tech/"><strong>1X Technologies</strong></a>; you can see some of that work <a href="https://x.com/1x_tech">here</a>. Before that, I was a graduate research assistant at NYU’s CILVR Lab, advised by <a href="https://www.lerrelpinto.com/">Lerrel Pinto</a> and <a href="https://soumith.ch/">Soumith Chintala</a>. Outside work, I take <a href="photography.html">photographs</a>.</p>
-
-        <div class="hero-links" aria-label="Profile links">
-          <a class="pill-link primary" href="mailto:anant.v.rai@gmail.com">Email <span aria-hidden="true">↗</span></a>
-          <a class="pill-link" href="https://github.com/RaiAnant">GitHub</a>
-          <a class="pill-link" href="https://scholar.google.com/citations?user=i0SlY6EAAAAJ">Scholar</a>
-          <a class="pill-link" href="https://www.linkedin.com/in/anant-rai-26193a143">LinkedIn</a>
-          <a class="pill-link" href="documents/Anant_Rai_CV.pdf">CV</a>
-        </div>
       </div>
 
       <div class="portrait-panel">
@@ -554,6 +570,17 @@
         </a>
       </div>
 
+      <div class="hero-details">
+        <p class="hero-about">Hi, I’m Anant. I’m a founding research engineer at a stealth startup, working to make robots more capable and general-purpose so they can become part of daily life. Previously, I was among the first five members of the AI team at <a href="https://www.1x.tech/"><strong>1X Technologies</strong></a>; you can see some of that work <a href="https://x.com/1x_tech">here</a>. Before that, I was a graduate research assistant at NYU’s CILVR Lab, advised by <a href="https://www.lerrelpinto.com/">Lerrel Pinto</a> and <a href="https://soumith.ch/">Soumith Chintala</a>. Outside work, I take <a href="photography.html">photographs</a>.</p>
+
+        <div class="hero-links" aria-label="Profile links">
+          <a class="pill-link primary" href="mailto:anant.v.rai@gmail.com">Email <span aria-hidden="true">↗</span></a>
+          <a class="pill-link" href="https://github.com/RaiAnant">GitHub</a>
+          <a class="pill-link" href="https://scholar.google.com/citations?user=i0SlY6EAAAAJ">Scholar</a>
+          <a class="pill-link" href="https://www.linkedin.com/in/anant-rai-26193a143">LinkedIn</a>
+          <a class="pill-link" href="documents/Anant_Rai_CV.pdf">CV</a>
+        </div>
+      </div>
     </section>
 
     <section class="section" id="experience" aria-labelledby="experience-title">
