@@ -136,11 +136,10 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(290px, 0.8fr);
-      gap: clamp(48px, 8vw, 110px);
-      align-items: center;
-      min-height: calc(100vh - 68px);
-      padding: clamp(64px, 9vw, 118px) 0;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+      gap: clamp(40px, 7vw, 86px);
+      align-items: start;
+      padding: clamp(58px, 7vw, 88px) 0 clamp(52px, 7vw, 82px);
     }
 
     .eyebrow,
@@ -155,31 +154,31 @@
     }
 
     .hero-title {
-      max-width: 760px;
-      margin: 20px 0 28px;
-      font-size: clamp(68px, 10vw, 138px);
+      max-width: 680px;
+      margin: 16px 0 26px;
+      font-size: clamp(54px, 7vw, 88px);
       font-weight: 700;
-      letter-spacing: -0.075em;
-      line-height: 0.8;
+      letter-spacing: -0.06em;
+      line-height: 0.92;
     }
 
     .hero-title span {
       color: var(--accent);
     }
 
-    .hero-lede {
-      max-width: 680px;
+    .hero-about {
+      max-width: 760px;
       margin: 0;
       color: var(--muted);
-      font-size: clamp(19px, 2vw, 25px);
-      line-height: 1.48;
+      font-size: clamp(17px, 1.55vw, 20px);
+      line-height: 1.7;
     }
 
     .hero-links {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 38px;
+      margin-top: 30px;
     }
 
     .pill-link {
@@ -217,53 +216,58 @@
     }
 
     .portrait-panel {
-      position: relative;
-      width: min(100%, 410px);
+      width: min(100%, 300px);
       justify-self: end;
-      padding: 18px 18px 0 0;
-    }
-
-    .portrait-panel::before {
-      position: absolute;
-      inset: 0 0 44px 32px;
-      border: 1px solid rgba(29, 27, 23, 0.24);
-      border-radius: 48% 48% 24px 24px;
-      content: '';
-      transform: translate(12px, -12px);
     }
 
     .portrait-frame {
-      position: relative;
       display: block;
+      aspect-ratio: 1;
       overflow: hidden;
-      border-radius: 48% 48% 24px 24px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
       background: #d8d3cb;
-      box-shadow: 0 24px 60px rgba(45, 36, 27, 0.2);
+      box-shadow: 0 12px 30px rgba(45, 36, 27, 0.12);
     }
 
     .portrait-frame img {
       display: block;
       width: 100%;
-      height: auto;
-      transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+      height: 100%;
+      object-fit: cover;
+      object-position: center 28%;
     }
 
-    .portrait-frame:hover img,
-    .portrait-frame:focus img {
-      transform: scale(1.02);
+    .hero-education {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 120px repeat(2, minmax(0, 1fr));
+      gap: clamp(20px, 4vw, 52px);
+      margin-top: 6px;
+      padding: 24px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
 
-    .portrait-caption {
-      position: relative;
-      display: block;
-      max-width: 330px;
-      margin: 18px 0 0 auto;
-      color: var(--muted);
+    .hero-education-label {
+      color: var(--accent);
       font-size: 12px;
-      line-height: 1.6;
-      letter-spacing: 0.1em;
-      text-align: right;
+      font-weight: 700;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
+    }
+
+    .education-inline h2 {
+      margin: 0 0 6px;
+      font-size: 17px;
+      line-height: 1.35;
+    }
+
+    .education-inline p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
     }
 
     .section {
@@ -290,20 +294,6 @@
       line-height: 1;
     }
 
-    .bio-card {
-      padding: clamp(28px, 4vw, 48px);
-      border: 1px solid rgba(29, 27, 23, 0.08);
-      border-radius: 24px;
-      background: rgba(251, 250, 247, 0.82);
-      box-shadow: 0 16px 42px rgba(45, 36, 27, 0.07);
-    }
-
-    .bio-card p {
-      margin: 0;
-      font-size: clamp(18px, 1.7vw, 22px);
-      line-height: 1.72;
-    }
-
     .home-page a {
       color: var(--accent);
     }
@@ -313,66 +303,12 @@
       color: #8f3d20;
     }
 
-    .focus-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 28px 0 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .focus-list li {
-      padding: 9px 13px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: #75412e;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .education-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .education-card {
-      display: flex;
-      flex-direction: column;
-      min-height: 220px;
-      padding: clamp(24px, 3vw, 36px);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.3);
-      transition: background 180ms ease, transform 180ms ease;
-    }
-
-    .education-card:hover {
-      background: rgba(255, 255, 255, 0.62);
-      transform: translateY(-3px);
-    }
-
-    .card-date,
     .timeline-date {
       color: var(--muted);
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.09em;
       text-transform: uppercase;
-    }
-
-    .education-card h3 {
-      margin: auto 0 18px;
-      font-size: clamp(23px, 2.4vw, 31px);
-      letter-spacing: -0.035em;
-      line-height: 1.08;
-    }
-
-    .education-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.5;
     }
 
     .timeline {
@@ -417,42 +353,26 @@
 
     .publication-card {
       display: grid;
-      grid-template-columns: minmax(240px, 0.42fr) minmax(0, 0.58fr);
-      gap: clamp(24px, 4vw, 48px);
+      grid-template-columns: minmax(240px, 0.38fr) minmax(0, 0.62fr);
+      gap: clamp(24px, 3.5vw, 40px);
       align-items: center;
       padding: clamp(18px, 2vw, 24px);
       border: 1px solid rgba(29, 27, 23, 0.1);
-      border-radius: 24px;
-      background: rgba(251, 250, 247, 0.74);
-      box-shadow: 0 8px 28px rgba(45, 36, 27, 0.05);
-      transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+      border-radius: 16px;
+      background: rgba(251, 250, 247, 0.55);
+      transition: border-color 180ms ease, background 180ms ease;
     }
 
     .publication-card:hover {
       border-color: rgba(184, 92, 54, 0.28);
-      box-shadow: 0 20px 44px rgba(45, 36, 27, 0.1);
-      transform: translateY(-3px);
-    }
-
-    .publication-card:nth-child(even) {
-      grid-template-columns: minmax(0, 0.58fr) minmax(240px, 0.42fr);
-    }
-
-    .publication-card:nth-child(even) .publication-media {
-      grid-column: 2;
-      grid-row: 1;
-    }
-
-    .publication-card:nth-child(even) .publication-body {
-      grid-column: 1;
-      grid-row: 1;
+      background: rgba(251, 250, 247, 0.88);
     }
 
     .publication-media {
       display: block;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 4 / 3;
       overflow: hidden;
-      border-radius: 15px;
+      border-radius: 10px;
       background: #e5e1da;
     }
 
@@ -460,17 +380,12 @@
       display: block;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .publication-media.contain img {
-      padding: 18px;
       object-fit: contain;
     }
 
-    .publication-card:hover .publication-media img {
-      transform: scale(1.025);
+    .publication-media.contain img {
+      padding: 12px;
+      object-fit: contain;
     }
 
     .publication-body h3 {
@@ -550,7 +465,7 @@
 
     @media (max-width: 900px) {
       .hero {
-        grid-template-columns: minmax(0, 1fr) minmax(250px, 0.72fr);
+        grid-template-columns: minmax(0, 1fr) minmax(220px, 260px);
         gap: 42px;
       }
 
@@ -583,36 +498,30 @@
 
       .hero {
         grid-template-columns: 1fr;
-        min-height: auto;
         padding-top: 72px;
       }
 
       .hero-title {
-        font-size: clamp(64px, 21vw, 104px);
+        font-size: clamp(52px, 16vw, 72px);
       }
 
       .portrait-panel {
-        width: min(86%, 360px);
+        width: min(72%, 260px);
         justify-self: center;
       }
 
-      .education-grid,
-      .publication-card,
-      .publication-card:nth-child(even) {
+      .hero-education {
         grid-template-columns: 1fr;
+        gap: 18px;
       }
 
-      .publication-card:nth-child(even) .publication-media,
-      .publication-card:nth-child(even) .publication-body {
-        grid-column: 1;
+      .education-inline {
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
       }
 
-      .publication-card:nth-child(even) .publication-media {
-        grid-row: 1;
-      }
-
-      .publication-card:nth-child(even) .publication-body {
-        grid-row: 2;
+      .publication-card {
+        grid-template-columns: 1fr;
       }
 
       .timeline-item {
@@ -642,8 +551,6 @@
       }
 
       .pill-link,
-      .education-card,
-      .portrait-frame img,
       .publication-card,
       .publication-media img {
         transition: none;
@@ -659,7 +566,7 @@
     <div class="nav-inner">
       <a class="brand" href="#top" aria-label="Anant Rai, home">AR</a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#about">About</a>
+        <a href="#top">About</a>
         <a href="#experience">Experience</a>
         <a href="#research">Research</a>
         <a class="nav-feature" href="photography.html">Photography ↗</a>
@@ -672,7 +579,7 @@
       <div class="hero-copy">
         <p class="eyebrow">Research engineer · Robot learning</p>
         <h1 class="hero-title" id="hero-title">Anant <span>Rai</span></h1>
-        <p class="hero-lede">I build learning systems that help robots become more capable, general-purpose, and useful in everyday life.</p>
+        <p class="hero-about">Hi, I’m Anant. I’m a founding research engineer at a stealth startup, working to make robots more capable and general-purpose so they can become part of daily life. Previously, I was among the first five members of the AI team at <a href="https://www.1x.tech/"><strong>1X Technologies</strong></a>; you can see some of that work <a href="https://x.com/1x_tech">here</a>. Before that, I was a graduate research assistant at NYU’s CILVR Lab, advised by <a href="https://www.lerrelpinto.com/">Lerrel Pinto</a> and <a href="https://soumith.ch/">Soumith Chintala</a>. Outside work, I take <a href="photography.html">photographs</a>.</p>
 
         <div class="hero-links" aria-label="Profile links">
           <a class="pill-link primary" href="mailto:anant.v.rai@gmail.com">Email <span aria-hidden="true">↗</span></a>
@@ -690,51 +597,24 @@
             <img src="images/Anant-portrait.jpg" width="738" height="900" alt="Portrait of Anant Rai" decoding="async" fetchpriority="high">
           </picture>
         </a>
-        <span class="portrait-caption">Robotics · representation learning · scalable systems</span>
       </div>
-    </section>
 
-    <section class="section" id="about" aria-labelledby="about-title">
-      <header class="section-heading">
-        <p class="section-label">01 / About</p>
-        <h2 class="section-title" id="about-title">Building intelligence for the physical world.</h2>
-      </header>
-
-      <div class="bio-card">
-        <p>Hi, I’m Anant. I’m a founding research engineer at a stealth startup, working to make robots more capable and general-purpose so they can become part of daily life. Previously, I was among the first five members of the AI team at <a href="https://www.1x.tech/"><strong>1X Technologies</strong></a>; you can see some of that work <a href="https://x.com/1x_tech">here</a>. Before that, I was a graduate research assistant at NYU’s CILVR Lab, advised by <a href="https://www.lerrelpinto.com/">Lerrel Pinto</a> and <a href="https://soumith.ch/">Soumith Chintala</a>. Outside work, I take <a href="photography.html">photographs</a>.</p>
-        <ul class="focus-list" aria-label="Areas of focus">
-          <li>Robot learning</li>
-          <li>Representation learning</li>
-          <li>Deep learning</li>
-          <li>Scalable software</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section" id="education" aria-labelledby="education-title">
-      <header class="section-heading">
-        <p class="section-label">02 / Education</p>
-        <h2 class="section-title" id="education-title">Foundations.</h2>
-      </header>
-
-      <div class="education-grid">
-        <article class="education-card">
-          <span class="card-date">September 2021 — May 2023</span>
-          <h3>Master of Science<br>Computer Science</h3>
-          <p><a href="https://gsas.nyu.edu/"><strong>New York University, Courant</strong></a><br>New York, USA</p>
-        </article>
-
-        <article class="education-card">
-          <span class="card-date">July 2017 — August 2021</span>
-          <h3>B.Tech<br>Information Technology</h3>
-          <p><a href="https://www.iiita.ac.in/"><strong>Indian Institute of Information Technology, Allahabad</strong></a><br>India</p>
-        </article>
+      <div class="hero-education" aria-label="Education">
+        <span class="hero-education-label">Education</span>
+        <div class="education-inline">
+          <h2>MS in Computer Science</h2>
+          <p><a href="https://gsas.nyu.edu/"><strong>NYU Courant</strong></a> · 2021–2023</p>
+        </div>
+        <div class="education-inline">
+          <h2>B.Tech in Information Technology</h2>
+          <p><a href="https://www.iiita.ac.in/"><strong>IIIT Allahabad</strong></a> · 2017–2021</p>
+        </div>
       </div>
     </section>
 
     <section class="section" id="experience" aria-labelledby="experience-title">
       <header class="section-heading">
-        <p class="section-label">03 / Experience</p>
+        <p class="section-label">01 / Experience</p>
         <h2 class="section-title" id="experience-title">Learning systems in the real world.</h2>
       </header>
 
@@ -779,7 +659,7 @@
 
     <section class="section" id="research" aria-labelledby="research-title">
       <header class="section-heading">
-        <p class="section-label">04 / Research</p>
+        <p class="section-label">02 / Research</p>
         <h2 class="section-title" id="research-title">Selected publications and projects.</h2>
       </header>
 
@@ -902,7 +782,6 @@
 
   <footer class="page-shell site-footer">
     <p>© Anant Rai</p>
-    <a href="https://jonbarron.info/">Original template by Jon Barron</a>
   </footer>
 </body>
 </html>
