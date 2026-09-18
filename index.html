@@ -1,570 +1,908 @@
-<!DOCTYPE HTML>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-  <title>Anant Rai's Home</title>
-  
-  <meta name="author" content="Anant Rai">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
-  <link rel="icon" type="image/png" href="images/seal_icon.png">
+  <meta name="author" content="Anant Rai">
+  <meta name="description" content="Anant Rai is a research engineer working on robot learning, representation learning, and scalable software.">
+  <title>Anant Rai — Research Engineer</title>
+  <link rel="stylesheet" href="stylesheet.css">
+  <link rel="icon" href="images/favicon.ico">
+
+  <style>
+    :root {
+      --page-bg: #f4f1eb;
+      --surface: #fbfaf7;
+      --ink: #1d1b17;
+      --muted: #706b62;
+      --line: rgba(29, 27, 23, 0.14);
+      --accent: #b85c36;
+      --accent-soft: rgba(184, 92, 54, 0.1);
+      --page-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body.home-page {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 90% 5%, rgba(184, 92, 54, 0.11), transparent 31rem),
+        radial-gradient(circle at 8% 28%, rgba(68, 108, 94, 0.08), transparent 28rem),
+        var(--page-bg);
+    }
+
+    .home-page strong {
+      font-size: inherit;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 100;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: var(--ink);
+      color: #fff;
+      transform: translateY(-150%);
+      transition: transform 180ms ease;
+    }
+
+    .skip-link:focus {
+      color: #fff;
+      transform: translateY(0);
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(29, 27, 23, 0.08);
+      background: rgba(244, 241, 235, 0.86);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav-inner,
+    .page-shell {
+      width: min(var(--page-width), calc(100% - clamp(32px, 7vw, 96px)));
+      margin: 0 auto;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 68px;
+    }
+
+    .brand {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .brand:hover,
+    .brand:focus {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(18px, 3vw, 38px);
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: var(--accent);
+    }
+
+    .nav-links .nav-feature {
+      padding: 10px 15px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .nav-links .nav-feature:hover,
+    .nav-links .nav-feature:focus {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(290px, 0.8fr);
+      gap: clamp(48px, 8vw, 110px);
+      align-items: center;
+      min-height: calc(100vh - 68px);
+      padding: clamp(64px, 9vw, 118px) 0;
+    }
+
+    .eyebrow,
+    .section-label,
+    .publication-kicker {
+      margin: 0;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      max-width: 760px;
+      margin: 20px 0 28px;
+      font-size: clamp(68px, 10vw, 138px);
+      font-weight: 700;
+      letter-spacing: -0.075em;
+      line-height: 0.8;
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-lede {
+      max-width: 680px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(19px, 2vw, 25px);
+      line-height: 1.48;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 38px;
+    }
+
+    .pill-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 42px;
+      padding: 0 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.38);
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 700;
+      transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
+    }
+
+    .pill-link:hover,
+    .pill-link:focus {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .pill-link.primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .pill-link.primary:hover,
+    .pill-link.primary:focus {
+      background: #9e4828;
+      color: #fff;
+    }
+
+    .portrait-panel {
+      position: relative;
+      width: min(100%, 410px);
+      justify-self: end;
+      padding: 18px 18px 0 0;
+    }
+
+    .portrait-panel::before {
+      position: absolute;
+      inset: 0 0 44px 32px;
+      border: 1px solid rgba(29, 27, 23, 0.24);
+      border-radius: 48% 48% 24px 24px;
+      content: '';
+      transform: translate(12px, -12px);
+    }
+
+    .portrait-frame {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      border-radius: 48% 48% 24px 24px;
+      background: #d8d3cb;
+      box-shadow: 0 24px 60px rgba(45, 36, 27, 0.2);
+    }
+
+    .portrait-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .portrait-frame:hover img,
+    .portrait-frame:focus img {
+      transform: scale(1.02);
+    }
+
+    .portrait-caption {
+      position: relative;
+      display: block;
+      max-width: 330px;
+      margin: 18px 0 0 auto;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      letter-spacing: 0.1em;
+      text-align: right;
+      text-transform: uppercase;
+    }
+
+    .section {
+      display: grid;
+      grid-template-columns: minmax(170px, 0.34fr) minmax(0, 1fr);
+      gap: clamp(32px, 7vw, 90px);
+      padding: clamp(72px, 9vw, 124px) 0;
+      border-top: 1px solid var(--line);
+      scroll-margin-top: 68px;
+    }
+
+    .section-heading {
+      align-self: start;
+      position: sticky;
+      top: 102px;
+    }
+
+    .section-title {
+      max-width: 290px;
+      margin: 14px 0 0;
+      font-size: clamp(31px, 4vw, 52px);
+      font-weight: 700;
+      letter-spacing: -0.045em;
+      line-height: 1;
+    }
+
+    .bio-card {
+      padding: clamp(28px, 4vw, 48px);
+      border: 1px solid rgba(29, 27, 23, 0.08);
+      border-radius: 24px;
+      background: rgba(251, 250, 247, 0.82);
+      box-shadow: 0 16px 42px rgba(45, 36, 27, 0.07);
+    }
+
+    .bio-card p {
+      margin: 0;
+      font-size: clamp(18px, 1.7vw, 22px);
+      line-height: 1.72;
+    }
+
+    .home-page a {
+      color: var(--accent);
+    }
+
+    .home-page a:hover,
+    .home-page a:focus {
+      color: #8f3d20;
+    }
+
+    .focus-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 28px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .focus-list li {
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #75412e;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .education-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 220px;
+      padding: clamp(24px, 3vw, 36px);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.3);
+      transition: background 180ms ease, transform 180ms ease;
+    }
+
+    .education-card:hover {
+      background: rgba(255, 255, 255, 0.62);
+      transform: translateY(-3px);
+    }
+
+    .card-date,
+    .timeline-date {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .education-card h3 {
+      margin: auto 0 18px;
+      font-size: clamp(23px, 2.4vw, 31px);
+      letter-spacing: -0.035em;
+      line-height: 1.08;
+    }
+
+    .education-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .timeline {
+      display: grid;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 155px minmax(0, 1fr);
+      gap: 30px;
+      padding: 30px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .timeline-item:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .timeline-item h3 {
+      margin: 0 0 7px;
+      font-size: clamp(21px, 2vw, 27px);
+      letter-spacing: -0.025em;
+    }
+
+    .timeline-company {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .timeline-description {
+      max-width: 720px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .publication-list {
+      display: grid;
+      gap: 20px;
+    }
+
+    .publication-card {
+      display: grid;
+      grid-template-columns: minmax(240px, 0.42fr) minmax(0, 0.58fr);
+      gap: clamp(24px, 4vw, 48px);
+      align-items: center;
+      padding: clamp(18px, 2vw, 24px);
+      border: 1px solid rgba(29, 27, 23, 0.1);
+      border-radius: 24px;
+      background: rgba(251, 250, 247, 0.74);
+      box-shadow: 0 8px 28px rgba(45, 36, 27, 0.05);
+      transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+    }
+
+    .publication-card:hover {
+      border-color: rgba(184, 92, 54, 0.28);
+      box-shadow: 0 20px 44px rgba(45, 36, 27, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .publication-card:nth-child(even) {
+      grid-template-columns: minmax(0, 0.58fr) minmax(240px, 0.42fr);
+    }
+
+    .publication-card:nth-child(even) .publication-media {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .publication-card:nth-child(even) .publication-body {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .publication-media {
+      display: block;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      border-radius: 15px;
+      background: #e5e1da;
+    }
+
+    .publication-media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .publication-media.contain img {
+      padding: 18px;
+      object-fit: contain;
+    }
+
+    .publication-card:hover .publication-media img {
+      transform: scale(1.025);
+    }
+
+    .publication-body h3 {
+      margin: 10px 0 12px;
+      font-size: clamp(22px, 2.4vw, 31px);
+      letter-spacing: -0.035em;
+      line-height: 1.12;
+    }
+
+    .publication-body h3 a {
+      color: var(--ink);
+    }
+
+    .publication-body h3 a:hover,
+    .publication-body h3 a:focus {
+      color: var(--accent);
+    }
+
+    .authors,
+    .publication-summary {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.62;
+    }
+
+    .authors {
+      margin: 0 0 15px;
+    }
+
+    .publication-summary {
+      margin: 18px 0 0;
+    }
+
+    .paper-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .paper-links a {
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .paper-links a:hover,
+    .paper-links a:focus {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .site-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 40px 0 54px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .site-footer p,
+    .site-footer a {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .site-footer a:hover,
+    .site-footer a:focus {
+      color: var(--accent);
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr) minmax(250px, 0.72fr);
+        gap: 42px;
+      }
+
+      .section {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        position: static;
+      }
+
+      .section-title {
+        max-width: 560px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-inner,
+      .page-shell {
+        width: calc(100% - 30px);
+      }
+
+      .nav-links {
+        gap: 16px;
+      }
+
+      .nav-links a:not(.nav-feature) {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 72px;
+      }
+
+      .hero-title {
+        font-size: clamp(64px, 21vw, 104px);
+      }
+
+      .portrait-panel {
+        width: min(86%, 360px);
+        justify-self: center;
+      }
+
+      .education-grid,
+      .publication-card,
+      .publication-card:nth-child(even) {
+        grid-template-columns: 1fr;
+      }
+
+      .publication-card:nth-child(even) .publication-media,
+      .publication-card:nth-child(even) .publication-body {
+        grid-column: 1;
+      }
+
+      .publication-card:nth-child(even) .publication-media {
+        grid-row: 1;
+      }
+
+      .publication-card:nth-child(even) .publication-body {
+        grid-row: 2;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 11px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-links {
+        align-items: stretch;
+      }
+
+      .pill-link {
+        justify-content: center;
+        width: calc(50% - 5px);
+      }
+
+      .site-footer {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .pill-link,
+      .education-card,
+      .portrait-frame img,
+      .publication-card,
+      .publication-media img {
+        transition: none;
+      }
+    }
+  </style>
 </head>
 
-<body>
-  <style> 
-    .gap-10 { 
-      width:100%; 
-      height:10px; 
-    } 
-    .gap-20 { 
-      width:100%; 
-      height:20px; 
-    } 
-    .gap-30 { 
-      width:100%; 
-      height:30px; 
-    } 
-  </style> 
-  <table style="width:100%;max-width:920px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-    <tr style="padding:0px">
-      <td style="padding:0px">
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr style="padding:0px">
-            <td style="padding:2.5%;width:63%;vertical-align:middle">
-              <p>
-                <name>Anant Rai</name>
-              </p>
-              <p>
-                <br>
-                <a href="mailto:anant.v.rai@gmail.com">Email</a> &nbsp/&nbsp
-                <a href="https://github.com/RaiAnant">GitHub</a> &nbsp/&nbsp
-                <a href="https://scholar.google.com/citations?user=i0SlY6EAAAAJ">Google Scholar</a> &nbsp/&nbsp
-                <a href="https://www.linkedin.com/in/anant-rai-26193a143">LinkedIn</a> &nbsp/&nbsp
-                <a href="documents/Anant_Rai_CV.pdf">CV</a>
-            </td>
-            <td style="padding:2.5%;width:30%;max-width:40%">
-              <a href="images/Anant.jpg"><img style="width:100%;max-width:100%" width="160" alt="profile photo" src="images/Anant.jpg" class="hoverZoomLink"></a>
-            </td>
-          </tr>
-        </tbody></table>
+<body class="home-page">
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-        <!-- <table width="100%" cellpadding="5"><tbody>
-          <tr>
-            <td style="width: 30px; padding-left: 20px; padding-bottom: 20px;">
-              <img width="30px" src="./icons/research1.svg">
-            </td>
-            <td style="padding-bottom: 20px;"><heading>Research Interests</heading></td>
-          </tr>
-        </tbody></table>
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="Anant Rai, home">AR</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#research">Research</a>
+        <a class="nav-feature" href="photography.html">Photography ↗</a>
+      </nav>
+    </div>
+  </header>
 
-        <table width="100%" ><tbody>
-          <tr>
-            <td style="width: 70%; text-align: left; padding-left: 20px;">
-              I am working at the intersection between <strong>Deep Learning</strong> and <strong>Bioinformatics</strong>, including:<br>
-               - <strong>C</strong>omputational Methodology in Bioinformatics <br>
-               - <strong>H</strong>ealthcare-Related applications of Deep Learning <br>
-               - <strong>E</strong>lectronic Health Record Analysis <br>
-               - <strong>N</strong>anopore Sequencing Data Analysis <br>
-               - <strong>G</strong>NN in Drug Discovery<br>
-              <br>
-              <br>
-            </td>
-          </tr>
-        </tbody></table> -->
+  <main class="page-shell" id="main-content">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Research engineer · Robot learning</p>
+        <h1 class="hero-title" id="hero-title">Anant <span>Rai</span></h1>
+        <p class="hero-lede">I build learning systems that help robots become more capable, general-purpose, and useful in everyday life.</p>
 
-        <table width="100%" cellpadding="5"><tbody>
-          <tr>
-            <td style="width: 30px; padding-left: 20px; padding-bottom: 20px;">
-              <img width="30px" src="./icons/bio.svg">
-            </td>
-            <td style="padding-bottom: 20px;"><heading>Short Bio</heading></td>
-          </tr>
-        </tbody></table>
+        <div class="hero-links" aria-label="Profile links">
+          <a class="pill-link primary" href="mailto:anant.v.rai@gmail.com">Email <span aria-hidden="true">↗</span></a>
+          <a class="pill-link" href="https://github.com/RaiAnant">GitHub</a>
+          <a class="pill-link" href="https://scholar.google.com/citations?user=i0SlY6EAAAAJ">Scholar</a>
+          <a class="pill-link" href="https://www.linkedin.com/in/anant-rai-26193a143">LinkedIn</a>
+          <a class="pill-link" href="documents/Anant_Rai_CV.pdf">CV</a>
+        </div>
+      </div>
 
-        <table width="100%" ><tbody>
-          <tr>
-            <td style="width: 70%; text-align: left; padding-left: 20px;">
-                Hi, I’m Anant. I’m a founding research engineer at a stealth startup, working on making robots more capable and general-purpose so they can be part of our daily lives. Previously I worked at <a href="https://www.1x.tech/"><strong>1x Technologies</strong></a> where I was among the first 5 members of the AI team. You can catch some of my past work <a href="https://x.com/1x_tech">here</a>. My main intrest lies in Deep Learning, more specifically representation learning and robot-learning.
-                  I also like to work on building scalable software. Previously I was a Graduate Research Assistan at CILVR Lab, NYU, where I worked on problems in Robot Learning, advised by Prof. <a href="https://www.lerrelpinto.com/">Lerrel Pinto</a> and <a href="https://soumith.ch/">Soumith Chintala</a>. In my free time, I like to click <a href="photography.html">photos</a>.
-                <br>
-                <br>
-            </td>
-          </tr>
-        </tbody></table>
+      <div class="portrait-panel">
+        <a class="portrait-frame" href="images/Anant.jpg" aria-label="Open full-resolution portrait">
+          <picture>
+            <source srcset="images/Anant-portrait.avif" type="image/avif">
+            <img src="images/Anant-portrait.jpg" width="738" height="900" alt="Portrait of Anant Rai" decoding="async" fetchpriority="high">
+          </picture>
+        </a>
+        <span class="portrait-caption">Robotics · representation learning · scalable systems</span>
+      </div>
+    </section>
 
-        <table width="100%" cellpadding="5"><tbody>
-          <tr>
-            <td style="width: 30px; padding-left: 20px; padding-bottom: 20px;">
-              <img width="30px" src="./icons/university.svg">
-            </td>
-            <td style="padding-bottom: 20px;"><heading>Education</heading></td>
-          </tr>
-        </tbody></table>
+    <section class="section" id="about" aria-labelledby="about-title">
+      <header class="section-heading">
+        <p class="section-label">01 / About</p>
+        <h2 class="section-title" id="about-title">Building intelligence for the physical world.</h2>
+      </header>
 
-        <table width="100%" ><tbody>
-          <tr>
-            <td style="width: 70%; text-align: left; padding-left: 20px;">
-              <strong>Master of Science, Computer Science</strong>
-            </td>
-            <td style="width: 30%; text-align: right;">
-              Sept 2021 - May 2023
-            </td>
-          </tr>
-          <tr>
-            <td style="width: 80%; text-align: left; padding-left: 20px;">
-              <a href="https://gsas.nyu.edu/"><strong>New York University, Courant </strong></a> | New York, USA
-            </td>
-          </tr>
-          <tr class="spacer"><td></td></tr>
-          <tr class="spacer"><td></td></tr>
-          <tr class="spacer"><td></td></tr>
-          <tr>
-            <td style="width: 70%; text-align: left; padding-left: 20px;">
-              <strong>B.Tech - Information Technology</strong>
-            </td>
-            <td style="width: 30%; text-align: right;">
-              July 2017-Aug 2021
-            </td>
-          </tr>
-          <tr>
-            <td style="width: 80%; text-align: left; padding-left: 20px;">
-              <a href="https://www.iiita.ac.in/"><strong>Indian Institute of Information Technology, Allahabad</strong></a> | India
-            </td>
-          </tr>
-        </tbody></table>
+      <div class="bio-card">
+        <p>Hi, I’m Anant. I’m a founding research engineer at a stealth startup, working to make robots more capable and general-purpose so they can become part of daily life. Previously, I was among the first five members of the AI team at <a href="https://www.1x.tech/"><strong>1X Technologies</strong></a>; you can see some of that work <a href="https://x.com/1x_tech">here</a>. Before that, I was a graduate research assistant at NYU’s CILVR Lab, advised by <a href="https://www.lerrelpinto.com/">Lerrel Pinto</a> and <a href="https://soumith.ch/">Soumith Chintala</a>. Outside work, I take <a href="photography.html">photographs</a>.</p>
+        <ul class="focus-list" aria-label="Areas of focus">
+          <li>Robot learning</li>
+          <li>Representation learning</li>
+          <li>Deep learning</li>
+          <li>Scalable software</li>
+        </ul>
+      </div>
+    </section>
 
-        <table width="100%" cellpadding="5"><tbody>
-          <tr>
-            <td style="width: 30px; padding-left: 20px; padding-top: 30px; padding-bottom: 20px; ">
-              <img width="30px" src="./icons/experience.svg">
-            </td>
-            <td style="padding-top: 30px; padding-bottom: 20px;">
-              <heading>Experience</heading>
-            </td>
-          </tr>
-        </tbody></table>
+    <section class="section" id="education" aria-labelledby="education-title">
+      <header class="section-heading">
+        <p class="section-label">02 / Education</p>
+        <h2 class="section-title" id="education-title">Foundations.</h2>
+      </header>
 
-        <table width="100%" cellpadding="5"><tbody>
-          <tr>
-            <td style="width: 80%; text-align: left; padding-left: 20px;">
-              <strong>Research Engineer</strong> <br>
-              <a href="https://www.1x.tech/">1x Technologies</a> | California, USA
-            </td>
-            <td style="width: 20%; text-align: right;">
-              Sept 2023 - Aug 2025
-            </td>
-          </tr>
-          <tr>
-            <td style="width: 70%; text-align: left; padding-left: 30px;">
-              Working with Humanoids to make them capable of working in real-world settings like homes and warehouses
-            </td>
-          </tr>
+      <div class="education-grid">
+        <article class="education-card">
+          <span class="card-date">September 2021 — May 2023</span>
+          <h3>Master of Science<br>Computer Science</h3>
+          <p><a href="https://gsas.nyu.edu/"><strong>New York University, Courant</strong></a><br>New York, USA</p>
+        </article>
 
-          <tr class="spacer"><td></td></tr>
-          <tr>
-            <td style="width: 80%; text-align: left; padding-left: 20px;">
-              <strong>Graduate Research Assistant</strong> <br>
-              <a href="https://wp.nyu.edu/cilvr/">CILVR, New York University</a> | New York, USA
-            </td>
-            <td style="width: 20%; text-align: right;">
-              Jan 2022 - Sept 2023
-            </td>
-          </tr>
-          <tr>
-            <td style="width: 70%; text-align: left; padding-left: 30px;">
-              Working on problems in Robot Learning, in collaboration with Hyundai. Specifically in the filed of Imitation Learning, Representation Learning, and Generalizable RL. Advised by Prof. <a href="https://www.lerrelpinto.com/">Lerrel Pinto</a>
-            </td>
-          </tr>
+        <article class="education-card">
+          <span class="card-date">July 2017 — August 2021</span>
+          <h3>B.Tech<br>Information Technology</h3>
+          <p><a href="https://www.iiita.ac.in/"><strong>Indian Institute of Information Technology, Allahabad</strong></a><br>India</p>
+        </article>
+      </div>
+    </section>
 
-          <tr class="spacer"><td></td></tr>
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <header class="section-heading">
+        <p class="section-label">03 / Experience</p>
+        <h2 class="section-title" id="experience-title">Learning systems in the real world.</h2>
+      </header>
 
-          <tr>
-            <td style="width: 80%; text-align: left; padding-left: 20px;">
-              <strong>Research & Development Intern</strong> <br>
-              <a href="https://www.ntu.edu.sg/temasek-labs">Temasek Lab, Nanyang Technological University</a> | Singapore
-            </td>
-            <td style="width: 20%; text-align: right;">
-              Jan - June 2021
-            </td>
-          </tr>
-          <tr>
-            <td style="width: 70%; text-align: left; padding-left: 30px;">
-              Lead the development of Meeting Room Speech Recognition Android Application, capable of automatic transcription. Also built image-captioning model using transformer
-            </td>
-          </tr>
+      <div class="timeline">
+        <article class="timeline-item">
+          <time class="timeline-date">Sep 2023 — Aug 2025</time>
+          <div>
+            <h3>Research Engineer</h3>
+            <p class="timeline-company"><a href="https://www.1x.tech/"><strong>1X Technologies</strong></a> · California, USA</p>
+            <p class="timeline-description">Worked with humanoid robots to make them capable of operating in real-world settings such as homes and warehouses.</p>
+          </div>
+        </article>
 
-          <tr class="spacer"><td></td></tr>
-          
-          <tr>
-            <td style="width: 80%; text-align: left; padding-left: 20px;">
-              <strong>Remote Research Assistant</strong> <br>
-              <a href="https://www.cit-ec.de/en">CITEC Lab, Bielefeld University</a> | Germany
-            </td>
-            <td style="width: 20%; text-align: right;">
-              2020 - 2021
-            </td>
-          </tr>
-          <tr>
-            <td style="width: 70%; text-align: left; padding-left: 30px;">
-              Using Conflict Based Search (CBD) and Deep-Q learning achieved decent performance on the flatland environment (3rd position in
-round 1 and 6th position on round 2)
-            </td>
-          </tr>
+        <article class="timeline-item">
+          <time class="timeline-date">Jan 2022 — Sep 2023</time>
+          <div>
+            <h3>Graduate Research Assistant</h3>
+            <p class="timeline-company"><a href="https://wp.nyu.edu/cilvr/"><strong>CILVR, New York University</strong></a> · New York, USA</p>
+            <p class="timeline-description">Worked on imitation learning, representation learning, and generalizable reinforcement learning in collaboration with Hyundai, advised by <a href="https://www.lerrelpinto.com/">Lerrel Pinto</a>.</p>
+          </div>
+        </article>
 
-          
+        <article class="timeline-item">
+          <time class="timeline-date">Jan — Jun 2021</time>
+          <div>
+            <h3>Research &amp; Development Intern</h3>
+            <p class="timeline-company"><a href="https://www.ntu.edu.sg/temasek-labs"><strong>Temasek Lab, Nanyang Technological University</strong></a> · Singapore</p>
+            <p class="timeline-description">Led development of a meeting-room speech recognition Android application for automatic transcription, and built an image-captioning model using transformers.</p>
+          </div>
+        </article>
 
-          
-        </tbody></table>
+        <article class="timeline-item">
+          <time class="timeline-date">2020 — 2021</time>
+          <div>
+            <h3>Remote Research Assistant</h3>
+            <p class="timeline-company"><a href="https://www.cit-ec.de/en"><strong>CITEC Lab, Bielefeld University</strong></a> · Germany</p>
+            <p class="timeline-description">Used conflict-based search and deep Q-learning on the Flatland environment, reaching third position in round one and sixth in round two.</p>
+          </div>
+        </article>
+      </div>
+    </section>
 
-        <table style="width:100%;" cellpadding="5"><tbody>
-          <tr>
-            <td style="width: 30px; padding-left: 20px; padding-top: 30px; padding-bottom: 20px; ">
-              <img width="30px" src="./icons/publication.svg">
-            </td>
-            <td style="padding-top: 30px; padding-bottom: 20px;">
-              <heading>Research & Publications</heading>
-            </td>
-          </tr>
-        </tbody></table>
+    <section class="section" id="research" aria-labelledby="research-title">
+      <header class="section-heading">
+        <p class="section-label">04 / Research</p>
+        <h2 class="section-title" id="research-title">Selected publications and projects.</h2>
+      </header>
 
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:15px;width:200px;vertical-align:middle">
-              <img src="images/dobbe-gif.gif"  width="200" style="border-style: none">
-            </td>
-            <td width="0%" valign="middle">
-              <a href="https://dobb-e.com/">
-                <papertitle>On Bringing Robots Home</papertitle>
-              </a> 
-              <br>
-              Nur Muhammad Mahi Shafiullah*, <strong>Anant Rai*</strong>, Haritheja Etukuru, Yiqian Liu, Ishan Misra, Soumith Chintala, <a href="https://lerrelpinto.com/">Lerrel Pinto</a>
-              <br/>
-              <em><strong>submitted to Science Robotics</strong></em>, 2023
-              <br>
-              <a href="https://dobb-e.com/">project page</a> | <a href="https://github.com/notmahi/dobb-e">code</a> | <a href="https://arxiv.org/abs/2311.16098"> arXiv</a>
-              <p>In this project, we addressed a key barrier in home robotics, particularly in imitation learning: the lack of affordable and user-friendly tools for collecting robot demonstrations. 
-                To solve this, we developed an innovative, cost-effective tool named the Stick using which we compile the 'Homes of New York' (HoNY) dataset, encompassing 13 hours of interactions from 22 NYC homes, complete with comprehensive video and action data. 
-                We further proposed the Home Pretrained Representation (HPR), a ResNet-34 model pre-trained on the HoNY dataset using self-supervised learning, to initialize robot policies in new environments. We show that this initialization can beat baseline models in unseen home environments.
-              </p>
-            </td>
-          </tr>
-        </tbody></table>
+      <div class="publication-list">
+        <article class="publication-card">
+          <a class="publication-media" href="https://dobb-e.com/" aria-label="On Bringing Robots Home project page">
+            <img src="images/dobbe-gif.gif" width="600" height="338" alt="Dobb-E home robot demonstration" loading="lazy" decoding="async">
+          </a>
+          <div class="publication-body">
+            <p class="publication-kicker">Science Robotics submission · 2023</p>
+            <h3><a href="https://dobb-e.com/">On Bringing Robots Home</a></h3>
+            <p class="authors">Nur Muhammad Mahi Shafiullah*, <strong>Anant Rai*</strong>, Haritheja Etukuru, Yiqian Liu, Ishan Misra, Soumith Chintala, <a href="https://lerrelpinto.com/">Lerrel Pinto</a></p>
+            <div class="paper-links">
+              <a href="https://dobb-e.com/">Project</a>
+              <a href="https://github.com/notmahi/dobb-e">Code</a>
+              <a href="https://arxiv.org/abs/2311.16098">arXiv</a>
+            </div>
+            <p class="publication-summary">We developed an affordable tool for collecting robot demonstrations and used it to assemble the Homes of New York dataset: 13 hours of interaction across 22 homes. A self-supervised representation pretrained on this data improves robot policies in unseen home environments.</p>
+          </div>
+        </article>
 
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:15px;width:200px;vertical-align:middle">
-              <img src="images/rtx-gif.gif"  width="200" style="border-style: none">
-            </td>
-            <td width="0%" valign="middle">
-              <a href="https://robotics-transformer-x.github.io/">
-                <papertitle>Open X-Embodiment: Robotic Learning Datasets and RT-X Models</papertitle>
-              </a> 
-              <br>
-              Abhishek Padalkar, Acorn Pooley, Ajay Mandlekar, ...<strong>Anant Rai</strong>, ... Zichen Jeff Cui
-              <br/>
-              <em><strong>submitted to ICRA</strong></em>, 2023
-              <br>
-              <a href="https://robotics-transformer-x.github.io/">project page</a> | <a href="https://github.com/google-deepmind/open_x_embodiment">code</a> | <a href="https://arxiv.org/abs/2310.08864"> arXiv</a>
-              <p>This work explores the potential for consolidating robotic learning by developing "generalist" X-robot policies adaptable across various robots, tasks, and environments. Traditionally, robotic learning involves training separate models for each application, robot, and environment. 
-                We are able to show that training on largescale diverse robotic dataset can be used to learn general skill like better spatial understanding in both the absolute and relative sense, generalization to unseen objects and overall a much more robust model that can beat baselines trained on robot-specific/task-specific data only </p>
-            </td>
-          </tr>
-        </tbody></table>
+        <article class="publication-card">
+          <a class="publication-media" href="https://robotics-transformer-x.github.io/" aria-label="Open X-Embodiment project page">
+            <img src="images/rtx-gif.gif" width="562" height="424" alt="Robots from the Open X-Embodiment project" loading="lazy" decoding="async">
+          </a>
+          <div class="publication-body">
+            <p class="publication-kicker">ICRA submission · 2023</p>
+            <h3><a href="https://robotics-transformer-x.github.io/">Open X-Embodiment: Robotic Learning Datasets and RT-X Models</a></h3>
+            <p class="authors">Abhishek Padalkar, Acorn Pooley, Ajay Mandlekar, … <strong>Anant Rai</strong>, … Zichen Jeff Cui</p>
+            <div class="paper-links">
+              <a href="https://robotics-transformer-x.github.io/">Project</a>
+              <a href="https://github.com/google-deepmind/open_x_embodiment">Code</a>
+              <a href="https://arxiv.org/abs/2310.08864">arXiv</a>
+            </div>
+            <p class="publication-summary">This work consolidates diverse robotic datasets to train generalist policies across robots, tasks, and environments, improving spatial understanding, generalization to unseen objects, and robustness over robot-specific baselines.</p>
+          </div>
+        </article>
 
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:15px;width:200px;vertical-align:middle">
-              <img src="images/fish_gif.gif"  width="200" style="border-style: none">
-            </td>
-            <td width="0%" valign="middle">
-              <a href="https://arxiv.org/abs/2303.01497">
-                <papertitle>Teach a Robot to FISH: Versatile Imitation from One Minute of Demonstrations</papertitle>
-              </a> 
-              <br>
-              Siddhant Haldar*, Jyothish Pari*, <strong>Anant Rai</strong>, <a href="https://lerrelpinto.com/">Lerrel Pinto</a>
-              <br/>
-              <em><strong>won best student paper award at RSS</strong></em>, 2023
-              <br>
-              <a href="https://fast-imitation.github.io/">project page</a> | <a href="https://github.com/siddhanthaldar/FISH">code</a> | <a href="https://arxiv.org/abs/2303.01497"> arXiv</a>
-              <p>In this work, we present Fast Imitation of Skills from Humans (FISH), a new imitation learning approach that can learn robust visual skills with less than a minute of human demonstrations. 
-                Given a weak base-policy trained by offline imitation of demonstrations, FISH computes rewards that correspond to the “match” between the robot’s behavior and the demonstrations. 
-                Along with beating the state-of-art, FISH is versatile, which allows it to be used across robot morphologies (e.g. xArm, Allegro, Stretch) and camera configurations</p>
-            </td>
-          </tr>
-        </tbody></table>
-      
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:15px;width:200px;vertical-align:middle">
-              <img src="images/Risk.png" width="200" style="border-style: none">
-            </td>
-            <td width="0%" valign="middle">
-              <a href="https://ieeexplore.ieee.org/document/9564406">
-                <papertitle>Risk Analysis using Trajectory Prediction in Indian Traffic</papertitle>
-              </a> (collaboration with UMD)
-              <br>
-              Rahul Jha*, <strong>Anant Rai*</strong>, <a href="http://rkala.in/">Rahul Kala</a>
-              <br/>
-              <em><strong>IEEE ITSC</strong></em>, 2022
-              <br>
-              <a href="data/chen2022interpretable">paper</a>
-              <p>Built a module using SSD (45 mAP) and SORT to detect and track agents in novel video dataset of Indian Traffic. Developed special LSTM based network architecture to learn the agent’s behaviours and interactions for trajectory
-                prediction in dense heterogeneous traffic. Devised Weighted-Elliptical-Model for risk modelling and combined it with trajectory prediction to get novel predictive-risk-analysis (20% improvement over baseline)</p>
-            </td>
-          </tr>
-        </tbody></table>
+        <article class="publication-card">
+          <a class="publication-media" href="https://fast-imitation.github.io/" aria-label="FISH project page">
+            <img src="images/fish_gif.gif" width="960" height="540" alt="Robot learning a task with FISH" loading="lazy" decoding="async">
+          </a>
+          <div class="publication-body">
+            <p class="publication-kicker">Best Student Paper · RSS 2023</p>
+            <h3><a href="https://arxiv.org/abs/2303.01497">Teach a Robot to FISH: Versatile Imitation from One Minute of Demonstrations</a></h3>
+            <p class="authors">Siddhant Haldar*, Jyothish Pari*, <strong>Anant Rai</strong>, <a href="https://lerrelpinto.com/">Lerrel Pinto</a></p>
+            <div class="paper-links">
+              <a href="https://fast-imitation.github.io/">Project</a>
+              <a href="https://github.com/siddhanthaldar/FISH">Code</a>
+              <a href="https://arxiv.org/abs/2303.01497">arXiv</a>
+            </div>
+            <p class="publication-summary">FISH is an imitation-learning approach that learns robust visual skills from less than a minute of human demonstrations. It works across robot morphologies and camera configurations while outperforming prior approaches.</p>
+          </div>
+        </article>
 
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:15px;width:200px;vertical-align:middle">
-              <img src="images/RMLU.png"  width="200" style="border-style: none">
-            </td>
-            <td width="0%" valign="middle">
-              <a href="https://github.com/RaiAnant/rl_with_videos">
-                <papertitle>RLMU: Reinforcement Learning with Self-supervised Human Motion Analysis</papertitle>
-              </a>
-              <br>
-              <strong>Anant Rai*</strong>, Umang Sharma*, Xu Cao*
-              <br/>
-              <a href="https://github.com/RaiAnant/rl_with_videos">code</a> | <a href="documents/RLMU.pdf">pdf</a>
-              <p>Unlabelled videos of humans are a large and almost untapped source of data for robots to learn several routine tasks. The paper <a href="data/li2022deepacr.pdf">RLV</a> proposes a framework that can leverage such videos to 
-                enhance learning of challeneging vision-based tasks. The drawback to their model is that it can be extremely unstable and lead to a lot of zero reward rollouts. In our work, we make the framework more robust by adding motion 
-                understanding module to stabalize cross domain adaption using discriminator. In our experiments on the task of Visual Puahing, we see our framework doing better than the RLV (15% improvement in performance) </p>
-            </td>
-          </tr>
-        </tbody></table>
+        <article class="publication-card">
+          <a class="publication-media contain" href="https://ieeexplore.ieee.org/document/9564406" aria-label="Risk Analysis paper">
+            <img src="images/Risk.png" width="1236" height="1341" alt="Trajectory prediction and traffic risk analysis visualization" loading="lazy" decoding="async">
+          </a>
+          <div class="publication-body">
+            <p class="publication-kicker">IEEE ITSC · 2022</p>
+            <h3><a href="https://ieeexplore.ieee.org/document/9564406">Risk Analysis using Trajectory Prediction in Indian Traffic</a></h3>
+            <p class="authors">Rahul Jha*, <strong>Anant Rai*</strong>, <a href="http://rkala.in/">Rahul Kala</a> · Collaboration with UMD</p>
+            <div class="paper-links">
+              <a href="https://ieeexplore.ieee.org/document/9564406">Paper</a>
+            </div>
+            <p class="publication-summary">We combined detection, tracking, and an LSTM-based trajectory model to understand agent interactions in dense heterogeneous traffic, then introduced a weighted elliptical risk model that improved predictive risk analysis by 20% over the baseline.</p>
+          </div>
+        </article>
 
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:15px;width:200px;vertical-align:middle">
-              <img src="images/download.jpg"  width="200" style="border-style: none">
-            </td>
-            <td width="0%" valign="middle">
-              <a href="https://github.com/RaiAnant/flatland-starter">
-                <papertitle>Solving Multiagent Planning problem using Deep Reinforcement Learning</papertitle>
-              </a>
-              <br>
-              Luca Hermes, <strong>Anant Rai</strong>, <a href="https://ni.www.techfak.uni-bielefeld.de/people/anmelnik">Andre Melnik</a>
-              <br/>
-              <a href="https://github.com/RaiAnant/flatland-starter">code</a>
-              <p>Devised optimal environment representation using trees and graphs for intelligent cost calculation and re-routing decisions
-                in the environments of <a href="https://www.aicrowd.com/challenges/flatland">NeurIPS2021: Flatland challenge </a>.
-                Using Conflict Based Search (CBD) and Deep-Q learning achieved decent performance on the environment (3rd position in round 1 and 6th position on round 2)</p>
-            </td>
-          </tr>
-        </tbody></table>
+        <article class="publication-card">
+          <a class="publication-media contain" href="https://github.com/RaiAnant/rl_with_videos" aria-label="RLMU project repository">
+            <img src="images/RMLU.png" width="1107" height="1121" alt="RLMU system overview" loading="lazy" decoding="async">
+          </a>
+          <div class="publication-body">
+            <p class="publication-kicker">Research project</p>
+            <h3><a href="https://github.com/RaiAnant/rl_with_videos">RLMU: Reinforcement Learning with Self-supervised Human Motion Analysis</a></h3>
+            <p class="authors"><strong>Anant Rai*</strong>, Umang Sharma*, Xu Cao*</p>
+            <div class="paper-links">
+              <a href="https://github.com/RaiAnant/rl_with_videos">Code</a>
+              <a href="documents/RLMU.pdf">PDF</a>
+            </div>
+            <p class="publication-summary">We made reinforcement learning from human videos more robust by adding a motion-understanding module that stabilizes cross-domain adaptation. On visual pushing, the approach improved performance by 15% over the baseline.</p>
+          </div>
+        </article>
 
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:15px;width:200px;vertical-align:middle">
-              <img src="images/Food.png"  width="200" style="border-style: none">
-            </td>
-            <td width="0%" valign="middle">
-              <a href="https://github.com/rahul-jha98/RestaurantTrends.stats">
-                <papertitle>Food Recommendation System using Neural Collaborative Filtering and Sentiment Analysis</papertitle>
-              </a>
-              <br>
-              Tinku Singh<sup>1</sup>, Ashwin Raut<sup>2</sup>, Dhruv Agarwal<sup>3</sup>, Rahul Jha<sup>4</sup>, <strong> Anant Rai</strong><sup>5</sup>, Manish Kumar<sup>6</sup>
-              <br/>
-              <em><strong>ICAIR</strong></em>, 2020
-              <br>
-              <a href="https://github.com/rahul-jha98/RestaurantTrends.stats">code</a> | <a href="documents/food_recomendation_paper.pdf">pdf</a>
-              <p>Used Data Mining and an array of Deep Learning techniques like Collaborative filtering, NN classifier and Sentiment
-                Analysis to analyse and capture food habits of Indian customers. Collected and organised data from food giants like Swiggy and Zomato on a flask-server, for analysis and predictions based
-                on location, and presented results on a web-app created using Node Js.</p>
-            </td>
-          </tr>
-          
-        </tbody></table>
+        <article class="publication-card">
+          <a class="publication-media contain" href="https://github.com/RaiAnant/flatland-starter" aria-label="Flatland project repository">
+            <img src="images/download.jpg" width="224" height="225" alt="Flatland multi-agent planning environment" loading="lazy" decoding="async">
+          </a>
+          <div class="publication-body">
+            <p class="publication-kicker"><a href="https://www.aicrowd.com/challenges/flatland">NeurIPS 2021 Flatland Challenge</a></p>
+            <h3><a href="https://github.com/RaiAnant/flatland-starter">Solving Multiagent Planning Problems using Deep Reinforcement Learning</a></h3>
+            <p class="authors">Luca Hermes, <strong>Anant Rai</strong>, <a href="https://ni.www.techfak.uni-bielefeld.de/people/anmelnik">Andre Melnik</a></p>
+            <div class="paper-links">
+              <a href="https://github.com/RaiAnant/flatland-starter">Code</a>
+            </div>
+            <p class="publication-summary">We designed tree- and graph-based environment representations for intelligent cost calculation and rerouting. Combining conflict-based search with deep Q-learning reached third place in round one and sixth in round two.</p>
+          </div>
+        </article>
 
+        <article class="publication-card">
+          <a class="publication-media contain" href="https://github.com/rahul-jha98/RestaurantTrends.stats" aria-label="Food recommendation project repository">
+            <img src="images/Food.png" width="1611" height="1609" alt="Food recommendation system interface" loading="lazy" decoding="async">
+          </a>
+          <div class="publication-body">
+            <p class="publication-kicker">ICAIR · 2020</p>
+            <h3><a href="https://github.com/rahul-jha98/RestaurantTrends.stats">Food Recommendation System using Neural Collaborative Filtering and Sentiment Analysis</a></h3>
+            <p class="authors">Tinku Singh, Ashwin Raut, Dhruv Agarwal, Rahul Jha, <strong>Anant Rai</strong>, Manish Kumar</p>
+            <div class="paper-links">
+              <a href="https://github.com/rahul-jha98/RestaurantTrends.stats">Code</a>
+              <a href="documents/food_recomendation_paper.pdf">PDF</a>
+            </div>
+            <p class="publication-summary">We combined collaborative filtering, neural classification, and sentiment analysis to model customer food preferences using data collected from Swiggy and Zomato, then presented the results through a web application.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
 
-
-
-        <!-- <div class="gap-30"></div> 
-        <div class="gap-10"></div> 
-        <table style="width:100%;" cellpadding="5"><tbody>
-          <tr>
-            <td style="width: 30px; padding-left: 20px; padding-top: 30px; padding-bottom: 20px; ">
-              <img width="35px" src="./icons/coding.png">
-            </td>
-            <td style="padding-top: 30px; padding-bottom: 20px;">
-              <heading>Development Projects</heading>
-            </td>
-          </tr>
-        </tbody></table>
-      
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:15px;width:200px;vertical-align:middle">
-              <img src="images/meadow9-2.png" alt="Interpretable RNA Foundation Model from Unannotated Data for Highly Accurate RNA Structure and Function Predictions" width="200" style="border-style: none">
-            </td>
-            <td width="0%" valign="middle">
-              <a href="https://meadow9.com/">
-                <papertitle>Meadow9 Android App</papertitle>
-              </a>
-              <br>
-              <em>Project at NTU, Singapore</strong></em>, 2022
-              <br>
-              <a href="https://play.google.com/store/apps/details?id=com.meadow9">Play Store</a>
-              <p>Lead the development of Meadow9, an app that allows user to host a conversation/meeting or join another meeting. The converstaions of the meeting are then transcribed using Automatic Speech Recognition (ASR) and presented as chat on the app. The app allows managing multiple such meetings seamlessly and also provides useful features such as data-saving mode, running meetings in the background as a service and upload pre-recorded meetings for transcription</p>
-            </td>
-          </tr>
-        </tbody></table>
-
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:15px;width:200px;vertical-align:middle">
-              <img src="images/Untitled Diagram.drawio.png" alt="li2022deepacr" width="200" style="border-style: none">
-            </td>
-            <td width="0%" valign="middle">
-              <a href="https://github.com/shiv07tiwari/Oxy-Tracker-Android">
-                <papertitle>OxyTracker</papertitle>
-              </a>
-              <br>
-              <strong>Anant Rai</strong>, Rahul Jha, Shivansh Tiwary, Mehul Arora, Ambujh Agarwal, Komal Bhadani
-              <br/>
-              <a href="https://github.com/shiv07tiwari/Oxy-Tracker-Android">CODE</a> 
-              <p>OxyTracker is a project aimed at tracking and controlling Oxygen Cylinder supply chain in Harayana. The main goal was to prevent oxygen cylinder theft and mismanagement during covid pandemic. The app ensured timely supply of oxygen to hospitals and critical patients, using tracking features. The software enabled producing unique ID and QR-code for each cylinder, which could be scanned using an app for quick identification and update on the cylinder status. The software helped Harayana goveremnt to save lives all accross the state. </p>
-            </td>
-          </tr>
-        </tbody></table> -->
-
-
-
-
-
-      <!-- <table style="width:100%;" cellpadding="5"><tbody>
-        <tr>
-          <td style="width: 30px; padding-left: 20px; padding-top: 30px; padding-bottom: 20px; ">
-            <img width="30px" src="./icons/honor.svg">
-          </td>
-          <td style="padding-top: 30px; padding-bottom: 20px;">
-            <heading>Honors and Awards</heading>
-          </td>
-        </tr>
-      </tbody></table>
-
-      <table width="100%" cellpadding="5"><tbody>
-        <tr>
-          <td style="width: 70%; text-align: left; padding-left: 20px;">
-            <strong> Execellent Graduate </strong> | Xi'an Jiaotong University
-          </td>
-          <td style="width: 30%; text-align: right;">
-            2021
-          </td>
-        </tr>
-        <tr>
-          <td style="width: 70%; text-align: left; padding-left: 20px;">
-            <strong> Execellent Student </strong> | Xi'an Jiaotong University
-          </td>
-          <td style="width: 30%; text-align: right;">
-            2020
-          </td>
-        </tr>
-        <tr>
-          <td style="width: 70%; text-align: left; padding-left: 20px;">
-            <strong> First Prize </strong> | National College Robot Competition (ROBOCON)
-          </td>
-          <td style="width: 30%; text-align: right;">
-            2019
-          </td>
-        </tr>
-        <tr>
-          <td style="width: 70%; text-align: left; padding-left: 20px;">
-            <strong> Meritorious Winner </strong> | Interdisciplinary Contest In Modeling
-          </td>
-          <td style="width: 30%; text-align: right;">
-            2019
-          </td>
-        </tr>
-      </tbody></table>
-
-      <table style="width:100%;" cellpadding="5"><tbody>
-        <tr>
-          <td style="width: 30px; padding-left: 20px; padding-top: 30px; padding-bottom: 20px; ">
-            <img width="30px" src="./icons/teaching.svg">
-          </td>
-          <td style="padding-top: 30px; padding-bottom: 20px;">
-            <heading>Teaching</heading>
-          </td>
-        </tr>
-      </tbody></table>
-
-      <table width="100%" cellpadding="5"><tbody>
-        <tr>
-          <td style="width: 85%; text-align: left; padding-left: 20px;">
-            <strong>TA</strong> - <a href="https://liyu95.com/AIST4010-Spring-2022.html">
-              AIST4010: Foundation of applied deep learning</a>
-          </td>
-          <td style="width: 30%; text-align: right;">
-            Spring 2022
-          </td>
-        </tr>
-        <tr>
-          <td style="width: 85%; text-align: left; padding-left: 20px;">
-            <strong>TA</strong> - <a href="https://liyu95.com/BMEG3105-Fall-2021.html">
-              BMEG3105: Data analytics for personalized genomics and precision medicine</a>
-          </td>
-          <td style="width: 30%; text-align: right;">
-            Fall 2021
-          </td>
-        </tr>
-      </tbody></table>
-      
-
-      <table style="width:100%;" cellpadding="5"><tbody>
-        <tr>
-          <td style="width: 30px; padding-left: 20px; padding-top: 30px; padding-bottom: 20px; ">
-            <img width="30px" src="./icons/news.svg">
-          </td>
-          <td style="padding-top: 30px; padding-bottom: 20px;">
-            <heading>Recent News</heading>
-          </td>
-        </tr>
-      </tbody></table>
-
-      <table width="100%" cellpadding="5"><tbody>
-        <tr>
-          <td style="width: 70%; text-align: left; padding-left: 20px;">
-            <p>--- Apr 2022, put our RNA Foundation paper on ArXiv.</p>
-            <p>--- Jan 2022, started to be the TA of AIST4010.</p>
-            <p>--- Nov 2021, our RBP Review Paper has been accepted by Briefings in Bioinformatics
-              (IF=11.622). Congratulations, Junkang!
-            </p>
-            <p>--- Sep 2021, started to be the TA of BMEG3105.</p>
-            <p>--- Aug 2021, became a Ph.D. student in CUHK!</p>
-            <p>--- July 2021, put our RBP Review on ArXiv.</p>
-            <p>--- July 2021, put our CLEAR Paper on bioXiv.</p>
-            <p>--- July 2021, graduated from Xi'an Jiaotong University!</p>
-            <p>--- May 2021, decided to pursue a Ph.D. in Computer Science and Engineering at CUHK!</p>
-            <p>--- Mar 2021, won the Execellent Graduate of Xi'an Jiaotong University.</p>
-          </td>
-        </tr>
-      </tbody></table> -->
-
-        <table width="100%" cellpadding="20"><tbody>
-          <tr>
-            <br>
-            <!-- <p style="padding-left: 20px;"><hr></p>
-            <p style="padding-left: 20px;"> -->
-              <!-- Page Views:&nbspStart of WebFreeCounter Code -->
-              <!-- <a href="https://www.webfreecounter.com/" target="_blank"><img src="https://www.webfreecounter.com/hit.php?id=gevpcfpo&nd=6&style=1" border="0" alt="web counter"></a> -->
-              <!-- End of WebFreeCounter Code --></p>
-            <!-- <p style="padding-left: 20px;">
-              <a href='https://clustrmaps.com/site/1bhp2'  title='Visit tracker'><img src='//clustrmaps.com/map_v2.png?cl=ffffff&w=300&t=n&d=1tL6HRyoDOHL2MkuB5yE2eo23A_CTq03icIw-dlOYEA&co=2d78ad&ct=ffffff'/></a>
-            </p>
-            <p style="padding-left: 20px;">
-              Updated Apr. 9
-            </p> -->
-            <p style="text-align: right;">
-              <a href="https://jonbarron.info/">Template From Here</a>
-            </p>
-          </tr>
-        </tbody></table>
-
-      </td>
-    </tr>
-  </table>
+  <footer class="page-shell site-footer">
+    <p>© Anant Rai</p>
+    <a href="https://jonbarron.info/">Original template by Jon Barron</a>
+  </footer>
 </body>
-
 </html>
