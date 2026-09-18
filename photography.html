@@ -159,22 +159,61 @@
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const folderPath = 'images/photography/';
-      
-      // CHANGE THIS NUMBER: Set it to your maximum image number
-      const N = 23; 
-      
-      const fileExtension = '.jpg';
-
-      // Generate sequence array
-      const imageFiles = [];
-      for (let i = 1; i <= N; i++) {
-        imageFiles.push(i + fileExtension);
-      }
+      const photos = [
+        { id: '2', width: 638, height: 960 },
+        { id: '4', width: 960, height: 522 },
+        { id: '6', width: 960, height: 520 },
+        { id: '7', width: 960, height: 621 },
+        { id: '8', width: 960, height: 668 },
+        { id: '9', width: 960, height: 706 },
+        { id: '10', width: 960, height: 532 },
+        { id: '11', width: 638, height: 960 },
+        { id: '12', width: 960, height: 544 },
+        { id: '13', width: 638, height: 960 },
+        { id: '14', width: 960, height: 638 },
+        { id: '15', width: 632, height: 960 },
+        { id: '16', width: 638, height: 960 },
+        { id: '17', width: 960, height: 588 },
+        { id: '18', width: 960, height: 627 },
+        { id: '19', width: 960, height: 638 },
+        { id: '20', width: 960, height: 507 },
+        { id: '21', width: 640, height: 960 },
+        { id: '22', width: 640, height: 960 },
+        { id: '23', width: 960, height: 647 },
+        { id: 'dsc-7310', width: 960, height: 627 },
+        { id: 'dsc-7459', width: 960, height: 587 },
+        { id: 'dsc-7520', width: 960, height: 657 },
+        { id: 'dsf0618-lr', width: 960, height: 640 },
+        { id: 'dsf0682', width: 960, height: 751 },
+        { id: 'dsf0753', width: 640, height: 960 },
+        { id: 'dsf0782-2', width: 709, height: 960 },
+        { id: 'dsf0801', width: 960, height: 651 },
+        { id: 'dsf1054', width: 816, height: 960 },
+        { id: 'dsf1528', width: 960, height: 640 },
+        { id: 'dsf1913', width: 640, height: 960 },
+        { id: 'dsf1964', width: 960, height: 553 },
+        { id: 'dsf1991', width: 960, height: 480 },
+        { id: 'dsf2017', width: 815, height: 960 },
+        { id: 'dsf2018', width: 660, height: 960 },
+        { id: 'dsf2031', width: 960, height: 640 },
+        { id: 'dsf2128', width: 676, height: 960 },
+        { id: 'dsf2137', width: 655, height: 960 },
+        { id: 'dsf2156', width: 640, height: 960 },
+        { id: 'dsf2164', width: 796, height: 960 },
+        { id: 'dsf2299', width: 960, height: 609 },
+        { id: 'dsf2324-edit', width: 960, height: 640 },
+        { id: 'dsf2389', width: 699, height: 960 },
+        { id: 'dsf2398', width: 960, height: 533 },
+        { id: 'dsf2585', width: 960, height: 512 },
+        { id: 'dsf2688', width: 960, height: 619 },
+        { id: 'dsf2767', width: 960, height: 613 },
+        { id: 'dsf2828', width: 960, height: 625 }
+      ];
 
       // Randomize shuffle
-      for (let i = imageFiles.length - 1; i > 0; i--) {
+      for (let i = photos.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [imageFiles[i], imageFiles[j]] = [imageFiles[j], imageFiles[i]];
+        [photos[i], photos[j]] = [photos[j], photos[i]];
       }
 
       // Injecting structural elements into the gallery
@@ -182,16 +221,23 @@
       const lightbox = document.getElementById('lightbox');
       const lightboxImg = document.getElementById('lightbox-img');
       
-      imageFiles.forEach(file => {
+      photos.forEach((photo, index) => {
         // 1. Create outer card item
         const item = document.createElement('div');
         item.className = 'gallery-item';
         
         // 2. Create the image
         const img = document.createElement('img');
-        img.src = folderPath + file;
-        img.alt = "Photography Grid Asset";
-        img.loading = "lazy"; 
+        const galleryPath = folderPath + 'gallery/' + photo.id;
+        img.src = galleryPath + '-480.avif';
+        img.srcset = galleryPath + '-480.avif 480w, ' + galleryPath + '-960.avif 960w';
+        img.sizes = '(max-width: 500px) calc(100vw - 30px), (max-width: 800px) calc((100vw - 50px) / 2), 283px';
+        img.alt = 'Photograph by Anant Rai';
+        img.width = photo.width;
+        img.height = photo.height;
+        img.decoding = 'async';
+        img.loading = index < 3 ? 'eager' : 'lazy';
+        if (index === 0) img.fetchPriority = 'high';
         
         // 3. Create the hover overlay block
         const overlay = document.createElement('div');
@@ -209,7 +255,8 @@
         
         // Interaction: Clicking the photo opens the full screen UI element
         item.addEventListener('click', () => {
-          lightboxImg.src = img.src;
+          lightboxImg.src = folderPath + 'lightbox/' + photo.id + '.avif';
+          lightboxImg.alt = img.alt;
           lightbox.style.display = 'flex';
         });
 
